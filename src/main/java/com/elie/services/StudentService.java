@@ -52,4 +52,42 @@ public class StudentService implements Serializable {
             sqlSession.close();
         }
     }
+
+
+
+
+    /**
+     * Service level method to create and add a new student to
+     * the database
+     * @param student {Student} instance to be saved in the Db
+     */
+    public void createStudent(Student student){
+        SqlSession sqlSession = FactorySingleton.openSession();
+        try {
+            StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+            mapper.createStudent(student);
+            sqlSession.commit();
+        }finally {
+            sqlSession.close();
+        }
+    }
+
+
+
+
+    /**
+     * service level method to delete a student from the DB
+     * @param id {int} id to be deleted
+     */
+    public void deleteStudent(int id){
+        SqlSession sqlSession = FactorySingleton.openSession();
+        try {
+            StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+            mapper.deleteStudent(id);
+            sqlSession.commit();
+        }
+        finally {
+            sqlSession.close();
+        }
+    }
 }
