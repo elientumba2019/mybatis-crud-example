@@ -23,6 +23,7 @@ public class StudentService implements Serializable {
      * @return {List<Student>} objects returned
      */
     public List<Student> findAll(){
+        logger.info("GETTING ALL STUDENTS FROM THE DB");
         SqlSession sqlSession = FactorySingleton.openSession();
         try{
             StudentMapper mapper =  sqlSession.getMapper(StudentMapper.class);
@@ -43,6 +44,7 @@ public class StudentService implements Serializable {
      * @return {Student} instance
      */
     public Student findOne(int id){
+        logger.info("FINDING A STUDENT ID ID : " + id);
         SqlSession sqlSession = FactorySingleton.openSession();
         try{
             StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
@@ -62,6 +64,7 @@ public class StudentService implements Serializable {
      * @param student {Student} instance to be saved in the Db
      */
     public void createStudent(Student student){
+        logger.info("CREATING NEW STUDENT");
         SqlSession sqlSession = FactorySingleton.openSession();
         try {
             StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
@@ -80,6 +83,7 @@ public class StudentService implements Serializable {
      * @param id {int} id to be deleted
      */
     public void deleteStudent(int id){
+        logger.info("DELETING STUDENT WITH ID : " + id);
         SqlSession sqlSession = FactorySingleton.openSession();
         try {
             StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
