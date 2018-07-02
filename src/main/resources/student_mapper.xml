@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.elie.mapper.StudentMapper">
+    <resultMap id="StudentResult" type="com.elie.domain.Student">
+        <id property="id" column="stud_id"/>
+        <result property="name" column="name"/>
+        <result property="email" column="email"/>
+        <result property="dob" column="dob"/>
+    </resultMap>
+
+
+
+    <select id="findAll" resultMap="StudentResult">
+        select * from STUDENTS;
+    </select>
+
+
+    <select id="findById" parameterType="int" resultType="com.elie.domain.Student">
+        select stud_id as studid, name, email, dob from STUDENTS where stud_id = #{id}
+    </select>
+
+
+    <insert id="createStudent" parameterType="com.elie.domain.Student">
+        insert into STUDENTS (stud_id, name, email, dob) values (#{id}, #{name}, #{email}, #{dob})
+    </insert>
+
+
+
+    <delete id="deleteOne" parameterType="int">
+        delete from STUDENTS where stud_id = #{id}
+    </delete>
+
+</mapper>
